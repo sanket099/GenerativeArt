@@ -12,8 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GenerativeArt">
-        <activity android:name=".activities.ImageActivity"></activity>
-        <activity android:name=".activities.ScreenshotActivity" />
+        <activity android:name=".activities.ImageActivity" android:parentActivityName=".activities.ScreenshotActivity">
+
+        </activity>
+        <activity android:name=".activities.ScreenshotActivity"
+            android:parentActivityName=".activities.ParticleActivity">
+
+        </activity>
         <activity android:name=".activities.ParticleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

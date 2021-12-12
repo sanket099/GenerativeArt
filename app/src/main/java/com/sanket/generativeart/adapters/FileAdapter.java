@@ -35,7 +35,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
     @Override
     public FileAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.add_ingredient, parent, false);
+        View view = inflater.inflate(R.layout.screenshots, parent, false);
         FileAdapter.MyViewHolder holder = new FileAdapter.MyViewHolder(view,onNoteList);
         return holder;
     }
@@ -69,8 +69,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
         public MyViewHolder(@NonNull View itemView ,OnNoteList onNoteList) {
             super(itemView);
 
-            ing_iv = itemView.findViewById(R.id.iv_ing);
-
+            ing_iv = itemView.findViewById(R.id.screen_img);
 
             this.onNoteList = onNoteList;
 

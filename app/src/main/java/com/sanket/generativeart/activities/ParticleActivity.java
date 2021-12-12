@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -122,12 +123,13 @@ public class ParticleActivity extends AppCompatActivity implements BottomSheet.B
             BottomSheet bottomSheet = new BottomSheet();
             bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
 
+
         }
         else if(item.getItemId() == R.id.list){
             //show list of screenshots
             Intent intent = new Intent(ParticleActivity.this, ScreenshotActivity.class);
             startActivity(intent);
-            finish();
+           // finish();
 
         }
         return super.onOptionsItemSelected(item);
@@ -204,7 +206,7 @@ public class ParticleActivity extends AppCompatActivity implements BottomSheet.B
 
             //openScreenshot(imageFile);
 
-            Toast.makeText(this, "Screenshot taken " + link, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Screenshot taken " , Toast.LENGTH_SHORT).show();
             System.out.println("\"success\" = " + link);
 
            // addImageToGallery(mPath, this);
@@ -239,8 +241,8 @@ public class ParticleActivity extends AppCompatActivity implements BottomSheet.B
     public void setSize(int size) {
         //sharedPref.addSize(size);
         tinyDB.putInt("size", size);
-        contentView = new ParticleView(this);
-        setContentView(contentView);
+//        contentView = new ParticleView(this);
+//        setContentView(contentView);
 
 
     }
@@ -249,9 +251,15 @@ public class ParticleActivity extends AppCompatActivity implements BottomSheet.B
     public void setDensity(int density) {
         //sharedPref.addDensity(density);
         tinyDB.putInt("density", density);
+//        contentView = new ParticleView(this);
+//        setContentView(contentView);
+
+    }
+
+    @Override
+    public void dismiss(boolean dismiss) {
         contentView = new ParticleView(this);
         setContentView(contentView);
-
     }
 
     @Override
@@ -271,5 +279,7 @@ public class ParticleActivity extends AppCompatActivity implements BottomSheet.B
         contentView = new ParticleView(this);
         setContentView(contentView);
     }
+
+
 }
 

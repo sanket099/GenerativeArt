@@ -34,7 +34,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.MyViewHolder
     @Override
     public ColorAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //("hello2");
-        View view = inflater.inflate(R.layout.add_ingredient, parent, false);
+        View view = inflater.inflate(R.layout.color_thumb, parent, false);
         ColorAdapter.MyViewHolder holder = new ColorAdapter.MyViewHolder(view,onNoteList);
         return holder;
     }

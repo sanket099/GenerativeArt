@@ -2,6 +2,7 @@ package com.sanket.generativeart.fragments;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -114,6 +115,7 @@ public class BottomSheet extends BottomSheetDialogFragment implements ColorAdapt
     public interface BottomSheetListener {
         void setSize(int size);
         void setDensity(int density);
+        void dismiss(boolean dismiss);
     }
 
     @Override
@@ -172,9 +174,11 @@ public class BottomSheet extends BottomSheetDialogFragment implements ColorAdapt
 
         colorAdapter.notifyDataSetChanged();
 
-
-
     }
 
-
+    @Override
+    public void onCancel(@NonNull DialogInterface dialog) {
+        super.onCancel(dialog);
+        mListener.dismiss(true);
+    }
 }

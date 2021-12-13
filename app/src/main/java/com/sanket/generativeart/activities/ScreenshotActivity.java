@@ -48,8 +48,8 @@ public class ScreenshotActivity extends AppCompatActivity implements FileAdapter
         setContentView(R.layout.activity_screenshot);
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources()
-                .getColor(android.R.color.transparent)));
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
+                .getColor(android.R.color.black)));
+        getWindow().setStatusBarColor(Color.BLACK);
         getSupportActionBar().setTitle("Screenshots");
 
         files = new ArrayList<>();

@@ -58,8 +58,8 @@ public class ParticleActivity extends AppCompatActivity implements BottomSheet.B
         super.onCreate(savedInstanceState);
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources()
-                .getColor(android.R.color.transparent)));
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
+                .getColor(android.R.color.black)));
+        getWindow().setStatusBarColor(Color.BLACK);
         getSupportActionBar().setTitle("");
 
         if(tinyDB.getListObject("colors", MyColor.class).size() == 0){

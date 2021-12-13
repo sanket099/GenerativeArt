@@ -35,8 +35,8 @@ public class ImageActivity extends AppCompatActivity {
 
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources()
-                .getColor(android.R.color.transparent)));
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
+                .getColor(android.R.color.black)));
+        getWindow().setStatusBarColor(Color.BLACK);
         getSupportActionBar().setTitle("");
 
         ImageView imageView = findViewById(R.id.img);

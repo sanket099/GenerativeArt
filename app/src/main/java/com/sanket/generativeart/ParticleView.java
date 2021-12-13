@@ -62,31 +62,35 @@ public class ParticleView extends SurfaceView implements SurfaceHolder.Callback 
         Particle p;
         int recycleCount = 0;
         ArrayList<MyColor> colorList = tinyDB.getListObject("colors", MyColor.class);
+        if(mRecycleList != null && mParticleList != null){
 
-        if(mRecycleList.size()>1)
-            recycleCount = 2;
-        else
-            recycleCount =mRecycleList.size();
+            if(mRecycleList.size()>1)
+                recycleCount = 2;
+            else
+                recycleCount =mRecycleList.size();
 
-        int colorIdx = new Random().nextInt(colorList.size());
-        int color = colorList.get(colorIdx).getColor();
+            int colorIdx = new Random().nextInt(colorList.size());
+            int color = colorList.get(colorIdx).getColor();
 
 
-        for (int i = 0; i < recycleCount; i++) {
-            p = (Particle) mRecycleList.remove(0);
-            p.init((int) event.getX(), (int) event.getY(), color);
+            for (int i = 0; i < recycleCount; i++) {
+                p = (Particle) mRecycleList.remove(0);
+                p.init((int) event.getX(), (int) event.getY(), color);
 
-            mParticleList.add(p);
+                mParticleList.add(p);
+
+            }
+
+
+            for (int i = 0; i < 2-recycleCount; i++){
+
+                mParticleList.add(new Particle((int)event.getX(), (int)event.getY(), color));
+            }
+
+            System.out.println("\"touch\" = " + "touch");
 
         }
 
-
-        for (int i = 0; i < 2-recycleCount; i++){
-
-            mParticleList.add(new Particle((int)event.getX(), (int)event.getY(), color));
-        }
-
-        System.out.println("\"touch\" = " + "touch");
 
         return super.onTouchEvent(event);
     }

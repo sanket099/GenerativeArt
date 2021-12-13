@@ -1,12 +1,18 @@
 package com.sanket.generativeart.activities;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -51,6 +57,7 @@ public class ScreenshotActivity extends AppCompatActivity implements FileAdapter
 
         mediaStorage = new File(String.valueOf(getExternalFilesDir(Environment.DIRECTORY_PICTURES)));
 
+
         getData();
 
     }
@@ -90,6 +97,7 @@ public class ScreenshotActivity extends AppCompatActivity implements FileAdapter
         //finish();
 
     }
+
 
 
 }

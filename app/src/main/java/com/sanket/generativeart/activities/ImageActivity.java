@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -102,7 +103,17 @@ public class ImageActivity extends AppCompatActivity {
 
                                 if(deleted) {
                                     Toast.makeText(ImageActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                                    finish();
+                                    Intent intent = new Intent(ImageActivity.this, ScreenshotActivity.class);
+                                    final Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+                                            startActivity(intent);
+                                        }
+                                    }, 1000);
+
+
                                 }
                                 else {
                                     Toast.makeText(ImageActivity.this, "Couldnt do it :/",

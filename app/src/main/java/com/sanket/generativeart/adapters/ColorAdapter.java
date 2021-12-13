@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sanket.generativeart.models.MyColor;
 import com.sanket.generativeart.R;
+import com.sanket.generativeart.util.TinyDB;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.MyViewHolder
     private LayoutInflater inflater;
     private List<MyColor> dataModelArrayList;
     private OnNoteList onNoteList;
+    private TinyDB tinydb;
 
 
     // private int selected = -1;
@@ -27,6 +29,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.MyViewHolder
         this.inflater = inflater;
         this.dataModelArrayList = dataModelArrayList;
         this.onNoteList = onNoteList;
+        tinydb = new TinyDB(inflater.getContext());
 
     }
 
@@ -46,6 +49,13 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.MyViewHolder
                 int col = dataModelArrayList.get(position).getColor();
                 holder.ing_iv.setBackgroundColor(col);
 
+                if(tinydb.getListObject("colors", MyColor.class).size() != 0){
+                        if(tinydb.getListObject("colors", MyColor.class)
+                                .contains(dataModelArrayList.get(position))){
+                            dataModelArrayList.get(position).setSelected(true);
+                        }
+                }
+
                 if (dataModelArrayList.get(position).isSelected()) {
                     //("visible " + dataModelArrayList.get(position).getIngredientName());
                     holder.iv_ticked.setVisibility(View.VISIBLE);
@@ -57,37 +67,17 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.MyViewHolder
 
         }
         catch (IndexOutOfBoundsException e){
-
+            System.out.println("e.getMessage() = " + e.getMessage());
         }
 
 
-    }
-
-    public void changeState(MyColor ingredientObjects){
-
-
-        ingredientObjects.setSelected(!ingredientObjects.isSelected());
-
-        notifyDataSetChanged();
-    }
-    public void select(MyColor ingredientObjects){
-        ingredientObjects.setSelected(true);
-
-        this.notifyDataSetChanged();
-    }
-    public  void notSelect(MyColor ingredientObjects){
-        ingredientObjects.setSelected(false);
-
-        //("sele " + ingredientObjects.getIngredientName() + ingredientObjects.isSelected());
-
-        this.notifyDataSetChanged();
     }
 
 
 
     @Override
     public int getItemCount() {
-
+        if(dataModelArrayList == null )return 0;
         return dataModelArrayList.size();
     }
 

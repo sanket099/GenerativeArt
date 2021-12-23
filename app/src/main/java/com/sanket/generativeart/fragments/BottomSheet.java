@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.sanket.generativeart.R;
 import com.sanket.generativeart.adapters.ColorAdapter;
 import com.sanket.generativeart.models.MyColor;
@@ -36,6 +40,8 @@ public class BottomSheet extends BottomSheetDialogFragment implements ColorAdapt
     private ArrayList<MyColor> arrayList;
     ArrayList<MyColor> selectedColors;
 
+    MaterialCheckBox blinking;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,11 +55,14 @@ public class BottomSheet extends BottomSheetDialogFragment implements ColorAdapt
         SeekBar size = v.findViewById(R.id.size);
         SeekBar density = v.findViewById(R.id.density);
 
+        blinking = v.findViewById(R.id.blinking);
+
         size.setMax(50);
         density.setMax(10);
 
         size.setProgress(tinydb.getInt("size"));
         density.setProgress(tinydb.getIntDensity("density"));
+        blinking.setChecked(tinydb.getBoolean("blinking"));
 
 
         size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -90,6 +99,14 @@ public class BottomSheet extends BottomSheetDialogFragment implements ColorAdapt
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        blinking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                tinydb.putBoolean("blinking", isChecked);
 
             }
         });

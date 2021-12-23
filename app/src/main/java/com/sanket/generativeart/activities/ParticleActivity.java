@@ -120,6 +120,7 @@ public class ParticleActivity extends AppCompatActivity implements BottomSheet.B
         }
         else if(item.getItemId() == R.id.settings){
             // customisations
+
             BottomSheet bottomSheet = new BottomSheet();
             bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
 

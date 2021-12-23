@@ -30,7 +30,7 @@ class ParticleDrawingThread extends Thread {
     private int mCanvasWidth;
     private int mCanvasHeight;
     private final Paint mPaint;
-    private final Bitmap[] mImage =new Bitmap[3];
+   // private final Bitmap[] mImage =new Bitmap[3];
     private final ArrayList<Bitmap> mImages = new ArrayList<>();
     //SharedPref sharedPref ;
     TinyDB tinyDB;
@@ -46,6 +46,7 @@ class ParticleDrawingThread extends Thread {
 
         int density = tinyDB.getIntDensity("density");
         int size = tinyDB.getInt("size");
+
 
 
         ArrayList<MyColor> colorList = tinyDB.getListObject("colors", MyColor.class);
@@ -134,11 +135,16 @@ class ParticleDrawingThread extends Thread {
     public void run() {
         while (mRun) {
             Canvas c = null;
+
             try {
                 c = mSurfaceHolder.lockCanvas(null);
                 synchronized (mSurfaceHolder) {
-                    if (c!= null)
-                    doDraw(c);
+                    if (c!= null){
+                        c.drawRect(0, 0, mCanvasWidth, mCanvasHeight, mPaint);
+                        doDraw(c);
+                    }
+
+
                 }
             } finally {
                 if (c != null) {
@@ -146,39 +152,54 @@ class ParticleDrawingThread extends Thread {
                 }
             }
         }
+
     }
 
     private void doDraw(Canvas c) {
         System.out.println("\"draw\" = " + "draw");
-        c.drawRect(0, 0, mCanvasWidth, mCanvasHeight, mPaint);
+
         int density = tinyDB.getIntDensity("density");
 
-        synchronized (mParticleList) {
-            int random = mImages.size() - 1;
 
-            for (int i = 0; i < mParticleList.size(); i++) {
+        synchronized (mParticleList) {
+            int j = mImages.size() - 1;
+            int count = 0;
+
+            for (int i = 0; i< mParticleList.size() - 1; i++) {
 
                 Particle p = (Particle) mParticleList.get(i);
-                p.move();
+                if(p!=null){
 
-                //c.drawBitmap(mImage[random], p.x-10, p.y-10, mPaint);
-                if(random < 0){
-                    random = mImages.size() - 1;
+                    p.move();
+
+                    System.out.println("j = " + j);
+
+                    if(j<0) j = mImages.size() - 1;
+
+                    c.drawBitmap(mImages.get(j--), p.x-10, p.y-10, mPaint);
+
+
+                    System.out.println("mParticleList.size() = " + mParticleList.size());
+
+                    if(tinyDB.getBoolean("blinking")){
+                        if (p.x < 0 || p.x > mCanvasWidth || p.y < 0 || p.y > mCanvasHeight) {
+                            mRecycleList.add(mParticleList.remove(i));
+                            i--;
+                        }
+                    }
+
                 }
-                c.drawBitmap(mImages.get(random), p.x-10, p.y-10, mPaint);
-                random--;
 
-
-                if (p.x < 0 || p.x > mCanvasWidth || p.y < 0 || p.y > mCanvasHeight) {
-                    mRecycleList.add(mParticleList.remove(i));
-                    i--;
-                }
             }
         }
     }
 
+
     public void stopDrawing() {
         this.mRun = false;
+        this.interrupt();
+
+
     }
 
     public ArrayList<Particle> getParticleList() {

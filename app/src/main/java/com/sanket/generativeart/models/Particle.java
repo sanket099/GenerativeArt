@@ -1,5 +1,8 @@
 package com.sanket.generativeart.models;
 
+import android.graphics.Bitmap;
+import android.os.Parcelable;
+
 import java.util.Random;
 
 public class Particle {
@@ -31,10 +34,10 @@ public class Particle {
     }
 
     public synchronized void move(){
-        distFromOrigin +=2;
+        distFromOrigin += 4;
         x = (int) (initX+distFromOrigin*directionCosine);
         y = (int) (initY+distFromOrigin*directionSine);
     }
-    private final static int NO_OF_DIRECTION = 400;
+    private final static int NO_OF_DIRECTION = 800;
 
 }

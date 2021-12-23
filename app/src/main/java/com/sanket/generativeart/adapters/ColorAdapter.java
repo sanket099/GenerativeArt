@@ -1,4 +1,4 @@
-package com.sanket.generativeart.adapters;
+    package com.sanket.generativeart.adapters;
 
 
 import android.app.Activity;
@@ -110,10 +110,6 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.MyViewHolder
             }
         }
     }
-
-
-
-
 
     public interface OnNoteList {
         void OnnoteClick(MyColor userClass);

@@ -86,17 +86,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
+<!--        <TextView-->
+<!--            android:id="@+id/tv_blink"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+
+
+<!--            android:layout_marginTop="128dp"-->
+<!--            android:fontFamily="@font/open_sans_semibold"-->
+<!--            android:text="Blinking"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.083"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_custom_eq" />-->
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/blinking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Color Blinking"
+            android:textColor="@color/white"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_custom_eq" />
+
+        <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20sp"
         android:orientation="vertical"
         tools:listitem="@layout/color_thumb"
         android:padding="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_density" />
+        app:layout_constraintTop_toBottomOf="@+id/blinking" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
